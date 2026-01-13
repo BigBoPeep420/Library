@@ -121,3 +121,9 @@ function showBookInfo(bool, book){
 }
 
 
+
+document.querySelectorAll('*').forEach(el => {
+    if (el.offsetWidth > document.body.offsetWidth) {
+        console.log('Found it!', el);
+    }
+});

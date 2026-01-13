@@ -25,9 +25,10 @@ a{color: inherit;}
 
 body{
     display: grid;
-    grid-template-columns: minmax(40vw, 0.5fr) 1fr;
-    grid-template-rows: minmax(20%, min-content) 1fr minmax(min-content, 5vh);
-    height: 100vh;
+    grid-template-columns: clamp(100px, 30vw, 200px) 1fr;
+    grid-template-rows: minmax(20%, min-content) 1fr minmax(min-content, 5dvh);
+    height: 100dvh;
+    width: 100dvw;
 }
 
 /* #region Header */
@@ -35,20 +36,21 @@ body{
     grid-area: 1 / 1 / 2 / -1;
     background-color: aqua;
     display: flex;
-    padding: 20px;
 }
 #pageTitle{
     display: grid;
     grid-template: min-content min-content / min-content 1fr;
     align-self: center;
+    min-width: 0;
 }
 #pageTitle>img{
-    width: 60px;
+    width: clamp(3rem, calc(7dvw + 3rem), 5rem);
     grid-area: 1 / 1 / -1 / 2;
     margin-right: 10px;
 }
 #pageTitle>h1{
     align-self: flex-end;
+    font-size: clamp(1.4rem, calc(7dvw + 1rem), 3rem);
 }
 #pageTitle>p{
     align-self: flex-start;
@@ -59,6 +61,8 @@ body{
 /* #region Nav */
 #nav{
     background-color: blueviolet;
+    padding: 10%;
+    padding-top: 20%;
 }
 #nav li>a{
     display: flex;
@@ -66,11 +70,22 @@ body{
 }
 #nav li>a>img{
     width: 1rem;
+    margin-right: 10px;
 }
 #nav li>a>p{
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+    mask-image: linear-gradient(to right, black 90%, transparent 100%);
+    font-size: ;
+
+}
+#nav li>a>p::-webkit-scrollbar{
+    display: none;
+}
+#nav li+li{
+    margin-top: clamp(5px, 10px, 1dvh);
 }
 /* #endregion */
 
@@ -81,18 +96,18 @@ body{
     height: 100%;
     #books{
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 20px;
-        padding: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 10%;
+        padding: clamp(5px, 5%, 10px);
         .bookCard{
             background-color: aliceblue;
             display: grid;
             grid-template-rows: min-content min-content min-content 1fr;
             grid-template-columns: 1fr min-content;
             border-radius: 15px;
-            padding: 15px;
+            padding: 5%;
             position: relative;
-            row-gap: 5px;
+            row-gap: 5%;
             height: 170px;
             cursor: pointer;
             .author, .title{
@@ -136,8 +151,8 @@ body{
     }
     #addBook{
         position: fixed;
-        bottom: 10vh;
-        right: 5vh;
+        bottom: 10dvh;
+        right: 5dvh;
         width: 100px;
         height: 50px;
         border-radius: 15px;
@@ -178,11 +193,13 @@ body{
 #footer{
     grid-area: 3 / 1 / -1 / -1;
     background-color: brown;
+    p{
+        font-size: 1em;
+    }
 }
 
 #dialogAddBook[open]{
-    min-width: min-content;
-    width: 70vh;
+    width: clamp();
     height: min-content;
     border: none;
     margin: auto;

@@ -41,7 +41,7 @@ bookInfoDialog.querySelector('.read').addEventListener('mouseenter', e => {
 
 library.addToLibrary('The Hobbit and The Lost', 'hob', 23, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non ipsa sit, enim praesentium repudiandae ipsam reiciendis. Dolores qui similique omnis ut mollitia sunt, asperiores officiis. Et eius nemo repudiandae enim.', 'yes');
 fillBookCards();
-showBookInfo(true, library.lib[0]);
+showAddBook(true);
 
 function makeBookCard(book){
     const card = document.createElement('div');
@@ -119,11 +119,3 @@ function showBookInfo(bool, book){
         bookInfoDialog.close();
     }
 }
-
-
-
-document.querySelectorAll('*').forEach(el => {
-    if (el.offsetWidth > document.body.offsetWidth) {
-        console.log('Found it!', el);
-    }
-});

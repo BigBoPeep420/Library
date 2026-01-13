@@ -12,9 +12,9 @@ addBookDialog.querySelector('form').addEventListener('submit', e => {
         e.target.reportValidity();
     }else{
         const data = Object.fromEntries(formData.entries());
-        const book = new Book(data['title'], data['author'], data['pages'], 
+        library.addToLibrary(data['title'], data['author'], data['pages'], 
             data['description'], data['read']);
-        makeBookCard(book);
+        fillBookCards();
     }
 })
 document.getElementById('addBook').addEventListener('click', e => {
@@ -39,7 +39,7 @@ bookInfoDialog.querySelector('.read').addEventListener('mouseenter', e => {
 
 
 
-library.addToLibrary('jrt', 'hob', 23, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est saepe consequatur reasdasdfsdgasd', 'yes');
+library.addToLibrary('The Hobbit and The Lost', 'hob', 23, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non ipsa sit, enim praesentium repudiandae ipsam reiciendis. Dolores qui similique omnis ut mollitia sunt, asperiores officiis. Et eius nemo repudiandae enim.', 'yes');
 fillBookCards();
 showBookInfo(true, library.lib[0]);
 
@@ -81,7 +81,7 @@ function makeBookCard(book){
     card.addEventListener('click', e => {
         e.preventDefault();
         const target = e.target.closest('.bookCard');
-        
+        console.log(e.target)
         showBookInfo(true, library.getBook(target.dataset.bookId));
     })
 }
@@ -119,3 +119,5 @@ function showBookInfo(bool, book){
         bookInfoDialog.close();
     }
 }
+
+

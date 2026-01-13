@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Library</title>
+    <script src="./scripts/index.js" type="module"></script>
+    <link rel="stylesheet" href="./styles/default.css">
+</head>
+<body>
+    <div id="header">
+        <div id="pageTitle">
+            <img src="./images/icons/bookshelf.svg" alt="page icon">
+            <h1>The Library</h1>
+            <p>Shhh!...</p>
+        </div>
+    </div>
+
+    <div id="nav">
+        <ul>
+            <li>
+                <a href="#">
+                    <img src="./images/icons/home.svg" alt="">
+                    <p>Home</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./images/icons/bookshelf.svg" alt="">
+                    <p>My Library</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./images/icons/account-group.svg" alt="">
+                    <p>Other Libraries</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="" alt="">
+                    <p></p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="" alt="">
+                    <p></p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="" alt="">
+                    <p></p>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <div id="books">
+
+        </div>
+        <button id="addBook">Add Book</button>
+    </div>
+
+    <div id="footer">
+        <p>Copyright © Lane Robey 2026</p>
+    </div>
+
+    <dialog id="dialogAddBook">
+        <form method="dialog">
+            <div class="inputGroup"><input type="text" name="title" id="title" placeholder="Title"></div>
+            <div class="inputGroup"><input type="text" name="author" id="author" placeholder="Author"></div>
+            <div class="inputGroup"><input type="text" inputmode="numeric" pattern="\d+$" name="pages" id="pages" placeholder="# Pages"></div>
+            <div class="inputGroup"><textarea name="description" id="description" placeholder="Description" ></textarea></div>
+            <div class="inputGroup">
+                <fieldset>
+                    <legend>Have you read it?</legend>
+                    <div><input type="radio" name="read" id="yes"><label for="yes">Yes</label></div>
+                    <div><input type="radio" name="read" id="started"><label for="started">Started</label></div>
+                    <div><input type="radio" name="read" id="no" checked><label for="no">No</label></div>
+                    <button type="submit">Add to Library</button>
+                </fieldset>
+            </div>
+        </form>
+    </dialog>
+</body>
+</html>

@@ -276,9 +276,7 @@ body{
                 #pages:invalid{
                     outline: solid 1px red;
                 }
-                #pages:invalid #{
-
-                }
+                
             }
             button{
                     padding: 10px 15px;

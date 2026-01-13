@@ -68,22 +68,39 @@
         <p>Copyright © Lane Robey 2026</p>
     </div>
 
-    <dialog id="dialogAddBook">
+    <dialog id="dialogAddBook" closedby="any">
         <form method="dialog">
-            <div class="inputGroup"><input type="text" name="title" id="title" placeholder="Title"></div>
-            <div class="inputGroup"><input type="text" name="author" id="author" placeholder="Author"></div>
-            <div class="inputGroup"><input type="text" inputmode="numeric" pattern="\d+$" name="pages" id="pages" placeholder="# Pages"></div>
-            <div class="inputGroup"><textarea name="description" id="description" placeholder="Description" ></textarea></div>
+            <div class="inputGroup">
+                <input type="text" name="title" id="title" placeholder="Title" required>
+            </div>
+            <div class="inputGroup">
+                <input type="text" name="author" id="author" placeholder="Author" required>
+            </div>
+            <div class="inputGroup">
+                <input type="text" inputmode="numeric" pattern="\d+$" name="pages" id="pages" placeholder="# Pages" required min="1">
+            </div>
+            <div class="inputGroup">
+                <textarea name="description" id="description" placeholder="Description" ></textarea>
+            </div>
             <div class="inputGroup">
                 <fieldset>
-                    <legend>Have you read it?</legend>
-                    <div><input type="radio" name="read" id="yes"><label for="yes">Yes</label></div>
-                    <div><input type="radio" name="read" id="started"><label for="started">Started</label></div>
-                    <div><input type="radio" name="read" id="no" checked><label for="no">No</label></div>
-                    <button type="submit">Add to Library</button>
+                        <legend>Have you read it?</legend>
+                        <div><input type="radio" name="read" id="yes" value="yes"><label for="yes">Yes</label></div>
+                        <div><input type="radio" name="read" id="started" value="started"><label for="started">Started</label></div>
+                        <div><input type="radio" name="read" id="no" checked value="no"><label for="no">No</label></div>
                 </fieldset>
+                <button type="submit">Add to Library</button>
             </div>
         </form>
+    </dialog>
+    <dialog id="dialogBookInfo" closedby="any">
+        <button id="bookInfoClose"></button>
+        <p class="title"></p>
+        <p class="author"></p>
+        <p class="pages"></p>
+        <p class="description"></p>
+        <p class="read no" onmouseenter="readTooltip.showPopover()" onmouseleave="readTooltip.hidePopover()">⏺</p>
+        <div class="tooltip" id="readTooltip" role="tooltip" popover="hint"></div>
     </dialog>
 </body>
 </html>

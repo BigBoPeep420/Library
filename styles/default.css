@@ -19,6 +19,7 @@
     margin-inline-start: 0;
     text-decoration: none;
     font-family: 'Sansation';
+    user-select: none;
 }
 a{color: inherit;}
 
@@ -86,12 +87,14 @@ body{
         .bookCard{
             background-color: aliceblue;
             display: grid;
-            grid-template-rows: min-content min-content min-content;
+            grid-template-rows: min-content min-content min-content 1fr;
             grid-template-columns: 1fr min-content;
             border-radius: 15px;
             padding: 15px;
             position: relative;
             row-gap: 5px;
+            height: 170px;
+            cursor: pointer;
             .author, .title{
                 white-space: nowrap;
                 overflow: hidden;
@@ -127,8 +130,7 @@ body{
                 overflow: hidden;
             }
             .read{
-                position: absolute;
-                right: 5px;
+                grid-column: 1 / 2;
             }
         }
     }
@@ -141,6 +143,21 @@ body{
         border-radius: 15px;
         background-color: green;
         border: none;
+    }
+    .delete{
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        background: none;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.1rem;
+        cursor: pointer;
+    }
+    .delete:hover{
+        font-size: 1.3rem;
     }
 }
 
@@ -208,13 +225,10 @@ body{
                 resize: none;
             }
             fieldset{
-                grid-column: 1 / 2;
                 display: flex;
                 gap: 25px;
-                width: 100%;
                 border: none;
-                align-self: center;
-                margin-bottom: 5px;
+                min-width: 0;
                 legend{
                     margin-bottom: 5px;
                     font-size: 0.9rem;
@@ -265,18 +279,22 @@ body{
                 #pages:invalid #{
 
                 }
-                button{
-                    align-self: center;
-                    justify-self: flex-end;
-                    padding: 10px;
+            }
+            button{
+                    padding: 10px 15px;
                     font-size: 1.2rem;
                     width: max-content;
-                    margin-left: auto;
                     border-radius: 10px;
                     border: none;
                     background-color: var(--colorDark);
+                    color: var(--colorTxtLight);
                 }
-            }
+        }
+        .inputGroup:last-of-type{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            gap: 20px;
         }
     }
 }
@@ -284,4 +302,77 @@ body{
     background-color: #0000006c;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+}
+
+#dialogBookInfo[open]{
+    margin: auto;
+    border-radius: 20px;
+    border: none;
+    padding: 10px;
+    display: grid;
+    grid-template: min-content min-content min-content min-content / 1fr min-content;
+    row-gap: 10px;
+    .tooltip{
+        margin: 0;
+        position: absolute;
+        position-anchor: --tooltipAnchor;
+        position-area: right;
+        opacity: 0;
+        transition: all 1s allow-discrete;
+        border-radius: 10px;
+        padding: 5px;
+        border: none;
+        background-color: #555;
+    }
+    .tooltip:popover-open{
+        opacity: 1;
+    }
+    @starting-style{
+        .tooltip:popover-open{
+            opacity: 0;
+        }
+    }
+    #bookInfoClose{
+        height: 25px;
+        width: 25px;
+        grid-area: 1 / 2 / 2 / -1;
+        border-radius: 50%;
+    }
+    .title{
+        grid-area: 1 / 1 / 2 / 2;
+        font-size: 1.5rem;
+        font-weight: 900;
+    }
+    .author{
+        grid-area: 2 / 1 / 3 / 2;
+        font-size: 1.4rem;
+    }
+    .pages{
+        grid-area: 2 / 2 / 3 / -1;
+        font-size: 1.2rem;
+        span{
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+    }
+    .description{
+        grid-area: 3 / 1 / 4 / -1;
+        font-size: 1.1rem;
+
+    }
+    .read{
+        grid-row: 4 / -1;
+        font-size: 25px;
+        anchor-name: --tooltipAnchor;
+        width: min-content;
+    }
+    .read[data-read="no"]{
+        color: red;
+    }
+    .read[data-read="yes"]{
+        color: green;
+    }
+    .read.started[data-read="started"]{
+        color: yellow;
+    }
 }
